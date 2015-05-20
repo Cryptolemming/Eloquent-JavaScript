@@ -21,3 +21,17 @@ ArraySeq.prototype.go = function() {
 ArraySeq.prototype.stop = function() {
   return (this.value == this.array.length - 1) ? true : false;
 }
+
+function RangeSeq(from, to) {
+  this.value = from - 1;
+  this.to = to;
+}
+
+RangeSeq.prototype.go = function() {
+  this.value++;
+  return this.value;
+}
+
+RangeSeq.prototype.stop = function() {
+  return (this.value == this.to) ? true : false;
+}
