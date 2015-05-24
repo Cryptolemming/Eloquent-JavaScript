@@ -305,7 +305,8 @@ SmartPlantEater.prototype.act = function(context) {
   if (space && this.energy > 80) {
     return {type: 'reproduce', direction: space};
   } 
-  if (plant && this.energy < 50) {
+  var plants = context.findAll('*');
+  if (plants.length > 1 && this.energy < 50) {
     return {type: 'eat', direction: plant};
   }
   if (space && this.energy < 30 || this.energy > 50) {
