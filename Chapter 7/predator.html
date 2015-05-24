@@ -323,6 +323,8 @@ Tiger.prototype.act = function(context) {
     return {type: 'reproduce', direction: space};
   if (critter)
     return {type: 'eat', direction: critter};
+  if (space)
+  	return {type:'move', direction: space}
   return {type: 'move', direction: this.direction};
 };
 
