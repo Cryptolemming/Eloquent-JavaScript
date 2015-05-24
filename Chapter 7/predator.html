@@ -316,9 +316,9 @@ function Tiger() {
 Tiger.prototype.act = function(context) {
   var space = context.find(' ');
   var plant = context.find('*');
-  var critter = context.find('O');
-  if (critter)
-    return {type: 'eat', direction: critter};
+  var critter = context.findAll('O');
+  if (critters)
+    return {type: 'eat', direction: randomElement(critters)};
   if (context.look(this.direction) != " " && space)
     this.direction = space;
   if (space && this.energy >= 140)
