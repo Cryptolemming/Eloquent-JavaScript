@@ -298,15 +298,14 @@ function SmartPlantEater() {
 }
 SmartPlantEater.prototype.act = function(context) {
   var space = context.find(" ");
-  if (this.energy > 70 && space)
+  if (context.look(this.direction) != " " && space)
+    this.direction = space;
+  if (space && this.energy > 70)
     return {type: "reproduce", direction: space};
   var plants = context.findAll("*");
   if (plants.length > 1)
     return {type: "eat", direction: randomElement(plants)};
-  if (context.look(this.direction) != " " && space)
-    this.direction = space;
   return {type: "move", direction: this.direction};
-  return;
 };
 
 function Tiger() {
@@ -318,14 +317,13 @@ Tiger.prototype.act = function(context) {
   var space = context.find(' ');
   var plant = context.find('*');
   var critter = context.find('O');
+  if (context.look(this.direction) != " " && space)
+    this.direction = space;
   if (space && this.energy >= 140)
     return {type: 'reproduce', direction: space};
   if (critter)
     return {type: 'eat', direction: critter};
-  if (context.look(this.direction) != ' ' && space)
-    this.direction = space;
-  return {type: 'move', direction: space};
-  return;
+  return {type: 'move', direction: this.direction};
 };
 
 var legend = {"#": Wall, "@": Tiger, "O": SmartPlantEater, "*": Plant}

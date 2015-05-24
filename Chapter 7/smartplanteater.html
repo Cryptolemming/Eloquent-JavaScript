@@ -294,11 +294,14 @@ PlantEater.prototype.act = function(context) {
 
 function SmartPlantEater() {
   this.energy = 20;
+  this.direction = 'e';
 }
 
 SmartPlantEater.prototype.act = function(context) {
   var space = context.find(' ');
   var plant = context.find('*');
+  if (context.look(this.direction) != ' ' && space)
+  	this.direction = space;
   if (space && this.energy > 80) {
     return {type: 'reproduce', direction: space};
   } 
@@ -308,7 +311,7 @@ SmartPlantEater.prototype.act = function(context) {
   if (space && this.energy < 30 || this.energy > 50) {
     return {type: 'move', direction: space};
   }
-  return;
+  return {type: 'move', direction: this.direction};
 };
 
 var smartplanteater = new LifelikeWorld(
