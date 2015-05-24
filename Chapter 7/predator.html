@@ -403,7 +403,7 @@ var predators = new LifelikeWorld(
     this.button.style.color = "red";
   };
 
-  window.onclick= function(world) { new Animated(world); };
+  window.onclick=window.animateWorld = function(world) { new Animated(world); };
 })();
 
 
