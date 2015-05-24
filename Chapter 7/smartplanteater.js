@@ -289,25 +289,25 @@ PlantEater.prototype.act = function(context) {
 };
 
 function SmartPlantEater() {
-  this.energy = 60;
+  this.energy = 20;
 }
 
 SmartPlantEater.prototype.act = function(context) {
   var space = context.find(' ');
   var plant = context.find('*');
   var critters = context.findAll('O');
-  if (space && this.energy > 70) {
+  if (space && this.energy > 90) {
     return {type: 'reproduce', direction: space};
   } 
   if (plant) {
     return {type: 'eat', direction: plant};
   }
-  if (space) {
+  if (space && this.energy < 30 || this.energy > 50) {
     return {type: 'move', direction: space};
   }
 };
 
-var valley = new LifelikeWorld(
+var smartplanteater = new LifelikeWorld(
   ["############################",
    "#####                 ######",
    "##   ***                **##",
