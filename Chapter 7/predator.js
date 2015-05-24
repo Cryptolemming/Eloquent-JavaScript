@@ -289,41 +289,39 @@ PlantEater.prototype.act = function(context) {
 };
 
 function SmartPlantEater() {
-  this.energy = 60;
+  this.energy = 30;
+  this.direction = "w";
 }
-
 SmartPlantEater.prototype.act = function(context) {
-  var space = context.find(' ');
-  var plant = context.find('*');
-  var critters = context.findAll('O');
-  if (space && this.energy > 70) {
-    return {type: 'reproduce', direction: space};
-  } 
-  if (plant) {
-    return {type: 'eat', direction: plant};
-  }
-  if (space) {
-    return {type: 'move', direction: space};
-  }
+  var space = context.find(" ");
+  if (this.energy > 70 && space)
+    return {type: "reproduce", direction: space};
+  var plants = context.findAll("*");
+  if (plants.length > 1)
+    return {type: "eat", direction: randomElement(plants)};
+  if (context.look(this.direction) != " " && space)
+    this.direction = space;
+  return {type: "move", direction: this.direction};
+  return;
 };
 
 function Tiger() {
   this.energy = 100;
+  this.direction = 'e';
 }
 
 Tiger.prototype.act = function(context) {
   var space = context.find(' ');
   var plant = context.find('*');
   var critter = context.find('O');
-  if (space && this.energy >= 180) {
+  if (space && this.energy >= 140)
     return {type: 'reproduce', direction: space};
-  }
-  if (critter) {
+  if (critter)
     return {type: 'eat', direction: critter};
-  }
-  if (space || plant) {
-    return {type: 'move', direction: space};
-  }
+  if (context.look(this.direction) != ' ' && space)
+    this.direction = space;
+  return {type: 'move', direction: space};
+  return; // to prevent freezing;
 };
 
 var legend = {"#": Wall, "@": Tiger, "O": SmartPlantEater, "*": Plant}
@@ -331,13 +329,13 @@ var legend = {"#": Wall, "@": Tiger, "O": SmartPlantEater, "*": Plant}
 var predators = new LifelikeWorld(
   ["####################################################",
    "#                 ####         ****              ###",
-   "#   *  @  ##                 ########       OO    ##",
-   "#   *    ##        O O                 ****       *#",
+   "#   *  @                     ########       OO    ##",
+   "#   *              O O                 ****       *#",
    "#       ##*                        ##########     *#",
    "#      ##***  *         ****                     **#",
    "#* **  #  *  ***      #########                  **#",
    "#* **  #      *               #   *              **#",
-   "#     ##              #   O   #  ***          ######",
+   "#                     #   O   #  ***          ######",
    "#*            @       #       #   *        O  #    #",
    "#*                    #  ######                 ** #",
    "###          ****          ***                  ** #",
