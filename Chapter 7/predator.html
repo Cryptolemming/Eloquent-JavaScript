@@ -402,8 +402,8 @@ var predators = new LifelikeWorld(
     this.button.innerHTML = "Disabled";
     this.button.style.color = "red";
   };
-
-  window.onclick=window.animateWorld = function(world) { new Animated(world); };
+  var animateWorld = function(world) { new Animated(world); };
+  window.onclick=animateWorld;
 })();
 
 
