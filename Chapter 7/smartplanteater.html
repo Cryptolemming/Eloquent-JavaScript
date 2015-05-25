@@ -302,7 +302,7 @@ SmartPlantEater.prototype.act = function(context) {
   var plant = context.find('*');
   if (context.look(this.direction) != ' ' && space)
   	this.direction = space;
-  if (space && this.energy > 50) {
+  if (space && this.energy > 55) {
     return {type: 'reproduce', direction: space};
   } 
   var plants = context.findAll('*');
