@@ -300,7 +300,7 @@ SmartPlantEater.prototype.act = function(context) {
   var space = context.find(" ");
   if (context.look(this.direction) != " " && space)
     this.direction = space;
-  if (space && this.energy > 70)
+  if (space && this.energy > 60)
     return {type: "reproduce", direction: space};
   var plants = context.findAll("*");
   if (plants.length > 1)
@@ -321,7 +321,7 @@ Tiger.prototype.act = function(context) {
     return {type: 'eat', direction: critter};
   if (context.look(this.direction) != " " && space)
     this.direction = space;
-  if (space && this.energy >= 140)
+  if (space && this.energy >= 180)
     return {type: 'reproduce', direction: space};
   if (space)
   	return {type:'move', direction: space};
