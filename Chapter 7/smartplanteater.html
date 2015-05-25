@@ -304,7 +304,7 @@ SmartPlantEater.prototype.act = function(context) {
   var plant = context.find('*');
   if (context.look(this.direction) != ' ' && space)
   	this.direction = space;
-  if (space && this.energy > 55) {
+  if (space && this.energy > 57) {
     return {type: 'reproduce', direction: space};
   } 
   var plants = context.findAll('*');
@@ -315,7 +315,7 @@ SmartPlantEater.prototype.act = function(context) {
     return {type: 'move', direction: space};
   }
   if (!space)
-  	return {type: 'eat', direction: plants}
+  	return {type: 'eat', direction: plants};
   return {type: 'move', direction: this.direction};
 };
 
