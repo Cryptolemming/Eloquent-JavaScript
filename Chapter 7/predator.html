@@ -330,7 +330,7 @@ Tiger.prototype.act = function(context) {
 
 var legend = {"#": Wall, "@": Tiger, "O": SmartPlantEater, "*": Plant}
 
-var predators = new LifelikeWorld(
+var predators = (
   ["####################################################",
    "#                 ####         ****              ###",
    "#   *  @                     ########       OO    ##",
@@ -407,5 +407,5 @@ var predators = new LifelikeWorld(
 
 })();
 
-window.onclick = animateWorld(predators);
+animateWorld(predators);
 </script></body>
