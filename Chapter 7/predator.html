@@ -403,9 +403,9 @@ var predators = new LifelikeWorld(
     this.button.style.color = "red";
   };
 
-  window.animateWorld = function(predators) { new Animated(world); };
+  window.animateWorld = function(world) { new Animated(world); };
 
 })();
 
-
+animateWorld(predators);
 </script></body>
