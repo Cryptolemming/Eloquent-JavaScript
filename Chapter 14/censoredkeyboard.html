@@ -1,0 +1,17 @@
+<!doctype html>
+<p>Q, W, X not allowed</p>
+<input type="text">
+
+<style>
+  input {outline: none; background: transparent; padding: 5px;}	
+</style>
+
+<script>
+  var field = document.querySelector("input");
+  // Your code here.
+  addEventListener('keypress', function(event) {
+	if(event.keyCode === 81 || event.keyCode === 87 || event.keyCode === 88 || event.keyCode === 113 || event.keyCode === 119 || event.keyCode === 120) {
+	  event.preventDefault();	
+	} 
+  });
+</script>

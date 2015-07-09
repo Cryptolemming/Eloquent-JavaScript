@@ -1,0 +1,56 @@
+<!doctype html>
+
+<div id="wrapper">
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</div>
+
+<style>
+	button {background: #444; width: 100px; height: 50px; outline: none; border-radius: 5px; color: #dedede; border: 0; margin: 5px;}
+</style>
+
+<script>
+  function asTabs(node) {
+    // Your code here.
+	var tabs = [];
+	for(var i = 1; i < node.childNodes.length; i += 1) {
+		var child = node.childNodes[i];
+		if(child.nodeType == document.ELEMENT_NODE) {
+			tabs.push(child);
+		}
+	}
+	
+	var list = document.createElement('div');
+	
+	tabs.forEach(function(tab, i) {
+		var button = document.createElement('button');
+		button.textContent = tab.getAttribute('data-tabname');
+		button.addEventListener('click', function() { selectTab(i); });
+		list.appendChild(button);		
+	});
+	
+	node.insertBefore(list, node.firstChild);
+	
+	function selectTab(n) {
+		tabs.forEach(function(tab, i) {
+		    if(i === n) {
+		    	tab.style.display = '';
+				tab.style.padding = '15px 0';
+		    } else {
+				tab.style.display = 'none';
+			}
+		});
+		for (var i = 0; i < list.childNodes.length; i += 1) {
+	        if (i == n) {
+				list.childNodes[i].style.background = "#205293";
+			} else {
+				list.childNodes[i].style.background = "";
+			}
+		}
+	}
+	
+	selectTab(0);
+  }
+  asTabs(document.querySelector("#wrapper"));
+</script>
